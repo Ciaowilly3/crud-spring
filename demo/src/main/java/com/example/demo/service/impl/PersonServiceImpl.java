@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
 import com.example.demo.dao.PersonDao;
 import com.example.demo.model.Person;
@@ -11,12 +11,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class PersonService {
+public class PersonServiceImpl {
 
     private final PersonDao personDao;
 
     @Autowired
-    public PersonService(@Qualifier("fakeDao") PersonDao personDao){
+    public PersonServiceImpl(@Qualifier("fakeDao") PersonDao personDao){
         this.personDao = personDao;
     }
     public int addPerson(Person person){
