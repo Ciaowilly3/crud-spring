@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dao.PersonDao;
+import com.example.demo.dao.PersonRepository;
 import com.example.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,28 +13,32 @@ import java.util.UUID;
 @Service
 public class PersonServiceImpl {
 
-    private final PersonDao personDao;
+
+    private final PersonRepository personRepository;
 
     @Autowired
-    public PersonServiceImpl(@Qualifier("fakeDao") PersonDao personDao){
-        this.personDao = personDao;
+    public PersonServiceImpl(PersonRepository personRepository){
+        this.personRepository = personRepository;
     }
-    public int addPerson(Person person){
-        return personDao.insertPerson(person);
+    public Person addPerson(Person person){
+        return personRepository.save(person);
     }
     public List<Person> getAllPeople(){
-        return  personDao.selectAllPeople();
+        return  personRepository.findAll();
     }
 
     public Optional<Person> getPersonById(UUID id){
-        return personDao.selectPersonById(id);
+        return personRepository.findById(id);
     }
 
-    public int deletePerson(UUID id){
-        return personDao.deletePersonById(id);
+    public void deletePerson(UUID id){
+        personRepository.deleteById(id);
     }
 
-    public int updatePerson(UUID id, Person newPerson){
-        return personDao.updatePersonById(id, newPerson);
-    }
+    /*public List<Person> findPeopleByName(String name) {
+        return personRepository.findByName(name);
+    }*/
+ /*   public int updatePerson(UUID id, Person newPerson){
+        return personRepository.save(id, newPerson);
+    }*/
 }
