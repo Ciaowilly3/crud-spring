@@ -36,10 +36,20 @@ public class PersonServiceImpl {
         personRepository.deleteById(id);
     }
 
-    /*public List<Person> findPeopleByName(String name) {
-        return personRepository.findByName(name);
-    }*/
+    public Person updatePerson(String idToUpdate, Person person){
+        Optional<Person> personToUpdate = personRepository.findById(idToUpdate);
+            return personToUpdate
+                    .map(p -> {
+                        p.setName(person.getName());
+                        personRepository.save(p);
+                        return p;
+                    })
+                                .orElse(null);
+                    }
+
+    }
+
  /*   public int updatePerson(UUID id, Person newPerson){
         return personRepository.save(id, newPerson);
     }*/
-}
+
