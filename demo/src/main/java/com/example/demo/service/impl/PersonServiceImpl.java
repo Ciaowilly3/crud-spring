@@ -21,6 +21,7 @@ public class PersonServiceImpl {
         this.personRepository = personRepository;
     }
     public Person addPerson(Person person){
+
         return personRepository.save(person);
     }
     public List<Person> getAllPeople(){

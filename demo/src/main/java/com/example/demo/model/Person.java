@@ -9,21 +9,33 @@ import java.util.UUID;
 @Table(name= "person")
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private final UUID id;
-    private final String name;
+    private String id;
 
-    public Person(@JsonProperty("id") UUID id,
-                  @JsonProperty("name") String name) {
+    private String name;
+
+    // Costruttore senza parametri necessario per JPA
+    public Person() {
+        this.id = UUID.randomUUID().toString();
+    }
+
+    public Person(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    // Getter e setter per name
     public String getName() {
         return name;
     }
 
-    public UUID getId() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter per id
+    public String getId() {
         return id;
     }
+
+
 }
