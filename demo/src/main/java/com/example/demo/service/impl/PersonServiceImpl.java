@@ -28,11 +28,11 @@ public class PersonServiceImpl {
         return  personRepository.findAll();
     }
 
-    public Optional<Person> getPersonById(UUID id){
+    public Optional<Person> getPersonById(String id){
         return personRepository.findById(id);
     }
 
-    public void deletePerson(UUID id){
+    public void deletePerson(String id){
         personRepository.deleteById(id);
     }
 

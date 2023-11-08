@@ -27,13 +27,13 @@ public class PersonController {
         return personServiceImpl.getAllPeople();
     }
     @GetMapping(path = "/{id}")
-    public Person getPersonById(@PathVariable("id") UUID id){
+    public Person getPersonById(@PathVariable("id") String id){
         return personServiceImpl.getPersonById(id)
                 .orElse(null);
     }
 
     @DeleteMapping(path = "{id}")
-    public void deletePersonById(@PathVariable("id") UUID id){
+    public void deletePersonById(@PathVariable("id") String id){
         personServiceImpl.deletePerson(id);
     }
 

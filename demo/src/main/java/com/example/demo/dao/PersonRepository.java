@@ -10,15 +10,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 
-public interface PersonRepository extends JpaRepository<Person, UUID> {
+public interface PersonRepository extends JpaRepository<Person, String> {
 
 
     Person save(Person person);
     List<Person> findAll();
 
-    Optional<Person> findById(UUID id);
+    Optional<Person> findById(String id);
 
-    void deleteById(UUID id);
+    void deleteById(String id);
 }
     /*int insertPerson(Person person);
 
